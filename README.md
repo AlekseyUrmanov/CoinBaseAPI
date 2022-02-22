@@ -1,1 +1,5 @@
 # CoinBaseAPI
+
+- Functions
+- Classes
+- Loops
