@@ -1,8 +1,10 @@
 
 cmd_list  = ['ls : for command list','help : for help','add order <price> <size> : adds an order',
+             'remove order <side> <price> <size> : removes order',
              'print vars : prints trader class variables', 'inventory : shows open orders',
              'cancel all orders : cancels all orders and exits', 'exit : exits the trading program',
-             "<Type gibberish> : won't break processing",'description : describes the program'
+             "<Type gibberish> : won't break processing",'description : describes the program',
+             'past trades: shows past trades'
              ]
 
 
@@ -23,7 +25,6 @@ def command_processing():
         
         return None
     
-    
     else:
         cmd  = (command.split(' '))
         if cmd[0] == '':
@@ -34,7 +35,7 @@ def command_processing():
                 command = restruct_cmd
         else:
             pass
-        if cmd[0] == 'cancel' or cmd[0] == 'add':
+        if cmd[0] == 'cancel' or cmd[0] == 'add' or cmd[0] == 'remove':
             confirm = input('<Y> Confirm <X> Decline: ')
             if confirm == 'Y' or confirm == 'y':
                 return command
