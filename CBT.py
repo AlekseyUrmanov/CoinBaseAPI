@@ -8,6 +8,7 @@ auth_client = None
 pub_client = None
 
 
+
 def auth():
     global auth_client,pub_client
     key = '8811ae1f541f911b68394649c73d17e8'
@@ -37,6 +38,7 @@ class trader():
         
         self.stage_one_orders = []
         
+        self.past_trades = []
         
     
     def disp_info(self,disp_type):
@@ -85,7 +87,7 @@ class trader():
         else:
             pass
 
-
+  
 
 
 
@@ -169,10 +171,7 @@ class trader():
         self.mod_my_order_book(orders_waiting_fill)
         
         
-        
-        
-        
-        
+  
         pass
         
     
@@ -232,19 +231,19 @@ class trader():
             PRICE = str(PRICE)
             
             match_order = {'type':'match','order':{'price':PRICE,'size':SIZE,'side':'sell'}}
+            self.past_trades.append(order)
             return match_order
         else: # sell --> buy
             self.profit += (spread * float(SIZE))
             PRICE = str((self.bid_ask)[0])
             match_order = {'type':'match','order':{'price':PRICE,'size':SIZE,'side':'buy'}}
+            self.past_trades.append(order)
             return match_order
        
         pass
     
     
-    def errors(self,order):
-        pass
-    
+
     
     def unsettled_orders(self,order):
         Order_Id = order['id']
@@ -284,8 +283,9 @@ class trader():
             else:
                 self.errors(order)
         
-            
-            
+    def cancel_all_orders(self):
+        auth_client.cancel_all(self.crypto)
+        pass
     
     def stage_one_trade(self,order_sizes,amount_of_orders,time_interval):
         self.set_bid_ask()
@@ -309,6 +309,7 @@ def read_exit_file(obj):
             file.truncate(0)
             return 'exit'
         elif command[0] == 'print' and command[1] == 'vars':
+            
             print(vars(obj))
             file.truncate(0)
             pass
@@ -319,8 +320,8 @@ def read_exit_file(obj):
             pass
             
         elif command[0] == 'cancel' and command[1] == 'all' and command[2] == 'orders':
-            auth_client.cancel_all(obj.crypto)
-            print('Exited')
+            obj.cancel_all_orders()
+            print('Cancelled and Exited')
             file.truncate(0)
             return 'exit'
             pass
@@ -335,12 +336,65 @@ def read_exit_file(obj):
                         except ValueError:
                             pass
                         pass
+                
+                # add cmd stops for improper price or improper sizes
+                
                 order = {'price':f'{PRICE}','size':f'{SIZE}','side':'buy'}
                 placed_order = obj.place_postlimit_order(order)
                 into_mod_order = [{'type':'waitingfill','order':placed_order}]
                 obj.mod_my_order_book(into_mod_order)
                 file.truncate(0)
                 pass
+            
+        elif command[0] == 'remove' and command[1] == 'order':
+            # remove order sell 1.0004 10
+            open_orders= obj.my_order_book
+            if len(open_orders) == 0:
+                print('No matured orders\nStage1 orders cannot be removed')
+                pass
+            
+            else:
+                
+                order_to_delete = None
+                for entry in command:
+                        try:
+                            SIZE = int(entry)
+                        except ValueError:
+                            try:
+                                PRICE = float(entry)
+                            except ValueError:
+                                pass
+                            pass
+                
+                
+                print(f'removed order --> {PRICE} {SIZE} {command[2]}')
+                
+                for key in open_orders:
+                    order_content = open_orders[key]
+                    if order_content['side'] == command[2]:
+                        if order_content['price'] == str(PRICE) and order_content['size'] == str(SIZE):
+                            order_id = key
+                            print(order_id)
+                            break
+                        else:
+                            pass
+                    else:
+                        pass
+                
+                auth_client.cancel_order(order_id)
+                del obj.my_order_book[order_id]
+            file.truncate(0)
+
+            pass
+        
+            
+        elif command[0] == 'past' and command[1] == 'trades':
+            pt = obj.past_trades
+            for trade in pt:
+                print(trade)
+            file.truncate(0)
+            pass
+
         else:
                 file.truncate(0)
                 pass
@@ -350,7 +404,7 @@ def runMM():
     auth()
     x = trader('USDT-USD',100)
     x.set_containers()
-    x.stage_one_trade(10,5,3600)
+    x.stage_one_trade(10,8,3600)
     while True:
         x.order_processing()
         x.disp_info(1)
@@ -358,10 +412,8 @@ def runMM():
         if dec == 'exit':
             break
         time.sleep(10)
-        
 
 
 runMM()
-
 
 
