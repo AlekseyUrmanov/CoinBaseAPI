@@ -170,8 +170,8 @@ class trader():
         
         self.mod_my_order_book(orders_waiting_fill)
         
-        
-  
+        adj = self.check_adjustments()
+        print(f'Order adjustment : {adj}')
         pass
         
     
@@ -242,8 +242,68 @@ class trader():
        
         pass
     
+    def check_adjustments(self):
+        
+        
+        oBook = auth_client.get_product_order_book(self.crypto,level = 1)
+        bids = oBook['bids']
+        asks = oBook['asks']
+        
+        
+        
+        
+        bpair = [(((bids)[0])[0]),(((bids)[0])[1])]
+        apair = [(((asks)[0])[0]),(((asks)[0])[1])]
+        
+        spread = float(apair[0])-float(bpair[0])
+        
+        orders_at_top_bid = 0
+        orders_below_top_bid = 0
+        
+        for order_id in self.my_order_book:
+            content = self.my_order_book[order_id]
+            if content['side'] == 'buy':
+                if float(content['price']) < float(bpair[0]):
+                    orders_below_top_bid +=1
+                else:
+                    orders_at_top_bid +=1
+            else:
+                pass
+        
+        if orders_below_top_bid>orders_at_top_bid:
+            return True
+        
+        elif orders_below_top_bid == orders_at_top_bid:
+            return False
+        else:
+            return False
+        
     
-
+    def order_adjuster(self,scale,order): #{price size side}
+        if scale == 'up':
+            # get price, see if incremented price <= top bid
+            # cancel old order
+            # place neew post limit
+            # delete from my book
+            # add to my book
+            
+            
+            
+            
+            
+           pass
+        
+        
+    def flash_ops(self):
+        # socket watch the bid ask movement
+        # when a new price level aappears 
+        # instantly place an order
+        
+        
+        pass
+        
+        
+    
     
     def unsettled_orders(self,order):
         Order_Id = order['id']
@@ -347,42 +407,47 @@ def read_exit_file(obj):
                 pass
             
         elif command[0] == 'remove' and command[1] == 'order':
-            # remove order sell 1.0004 10
-            open_orders= obj.my_order_book
-            if len(open_orders) == 0:
-                print('No matured orders\nStage1 orders cannot be removed')
-                pass
-            
-            else:
+            if command[2] == 'buy' or command[2] == 'sell':
                 
-                order_to_delete = None
-                for entry in command:
-                        try:
-                            SIZE = int(entry)
-                        except ValueError:
+                # remove order sell 1.0004 10
+                open_orders= obj.my_order_book
+                if len(open_orders) == 0:
+                    print('No matured orders\nStage1 orders cannot be removed')
+                    pass
+                
+                else:
+                    
+                    order_to_delete = None
+                    for entry in command:
                             try:
-                                PRICE = float(entry)
+                                SIZE = int(entry)
                             except ValueError:
+                                try:
+                                    PRICE = float(entry)
+                                except ValueError:
+                                    pass
                                 pass
-                            pass
-                
-                
-                print(f'removed order --> {PRICE} {SIZE} {command[2]}')
-                
-                for key in open_orders:
-                    order_content = open_orders[key]
-                    if order_content['side'] == command[2]:
-                        if order_content['price'] == str(PRICE) and order_content['size'] == str(SIZE):
-                            order_id = key
-                            print(order_id)
-                            break
+                    
+                    
+                    print(f'removed order --> {PRICE} {SIZE} {command[2]}')
+                    
+                    for key in open_orders:
+                        order_content = open_orders[key]
+                        if order_content['side'] == command[2]:
+                            if order_content['price'] == str(PRICE) and order_content['size'] == str(SIZE):
+                                order_id = key
+                                print(order_id)
+                                break
+                            else:
+                                pass
                         else:
                             pass
-                    else:
-                        pass
-                
-                auth_client.cancel_order(order_id)
-                del obj.my_order_book[order_id]
+                    
+                    auth_client.cancel_order(order_id)
+                    del obj.my_order_book[order_id]
+            else:
+                pass
+            
             file.truncate(0)
 
             pass
@@ -416,4 +481,24 @@ def runMM():
 
 runMM()
 
+#------------ development notes -----------------  <short term> 
+# add volume order adjustment identification
+# add auto order adjustment if self.check_adjust returns true
+# add bid check for new opportunities
+# return order book as printable through controller through disp_info method
+# feature to run program with no open orders (safe mode)
+# add chop method to reduce order side, reduction calls
+# add account info reader, set container global var establisher
+# before every execution check account variables 
+# fillment calculations, predict time to fill unfavorable position
+# vs the time it takes to open a new favorable position and complete a round trip
+# additional program that keeps track oh how much time orders have left till execution
+# use time left to execution data to check orders spread evenly apart 
+# start gethering volume data based on time, see what times of day see 
+# higher turnover, place larger and more frequent orders during those times
+# identofy resistance levels with order size.
+
+
+# <Long Term>
+# use resistance level identification to trade other pairs, while resistance == TRUE
 
