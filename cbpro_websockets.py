@@ -42,7 +42,9 @@ class BasicWebSock(cbpro.WebsocketClient):
         if self.message_count <=2:
             pass
         else:
-            t = datetime.datetime.now()
+            pass
+            #example for volume processing
+            '''t = datetime.datetime.now()
             
             if ((t - self.start_time).seconds) <=60:
                 
@@ -60,6 +62,9 @@ class BasicWebSock(cbpro.WebsocketClient):
                  self.min_buy_vol.append((self.buy_volume))
                  self.min_sell_vol.append(self.sell_volume)
                  
+                 
+                 
+                 
                  self.buy_volume = 0
                  self.sell_volume = 0
                  
@@ -70,14 +75,14 @@ class BasicWebSock(cbpro.WebsocketClient):
                  if side == 'buy':
                         self.buy_volume += size
                  else:
-                        self.sell_volume += size
+                        self.sell_volume += size'''
                  
                 
             # watch volume grow as a sequence
             # watch volume flow through intervals
             
             
-                
+                #example data collection
             '''
             
             try:
