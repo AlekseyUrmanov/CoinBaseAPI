@@ -13,5 +13,7 @@ Web Socket bot 2, is an efficient trading function which streams order updates t
    - Trade Gain
    - Trade Profit
 
+### Fee structure
+<img width="433" alt="Screen Shot 2022-03-11 at 1 08 00 PM" src="https://user-images.githubusercontent.com/94999268/157925277-2681004a-0d17-4e89-abed-9a341d787138.png">
 
 
