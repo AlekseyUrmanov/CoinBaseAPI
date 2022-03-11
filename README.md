@@ -30,3 +30,15 @@ In order to get into this bracket, you would only pay 215$ in transaction fees. 
 - Profit will be the difference between the trade gain and trade cost. We can look at profit this way, the lower the fees the more opportunitis we will see in which we can make a profit, but we also need to analyze the spread per dollar that we can capture. A large spread may be misleading if the price of a commodity is in the thousands, but if spread is large (0.01 - 0.001) and price is low, that is our special sauce. 
 
 ## Identifying Opportunity
+As a basic example of finding opportunity, assume this code:
+
+<img width="395" alt="Screen Shot 2022-03-11 at 1 30 48 PM" src="https://user-images.githubusercontent.com/94999268/157930359-802065c2-dfa9-4983-8d0e-a4dd0b1e24c4.png">
+
+We run through every currency pair trading in USD. 
+We than calculate the profit of of a rountrip trade with a 100 USD value, and some fee rate. 
+### Fee Rate Profits
+- Disregarding stable coins
+  - At .004, we can turn a profit in **14** instances
+  - At .001, we can turn a profit in **70** instances
+  - The more opportunity --> more money --> even more opportunity
+
