@@ -40,11 +40,12 @@ We than calculate the profit of of a rountrip trade with a 100 USD value, and so
 - Disregarding stable coins
   - At .004, we can turn a profit in **14** instances
   - At .001, we can turn a profit in **70** instances
+
 Assuming all 70 profitable instances, including outliers, the avarage profit for 100k in trading value of some commodity would be ~ 200$
 
 ## Talking Money
-In perfect theory, 100k in volume would yield around 200$, but we are not bounded to that number, we can choose the most profitable instance to trade and be making 400$ - 1000$ per 100k in trading volume (50k buy 50k sell). The real question, is how often can we turnover 100k in trading volume, to actually make thaat profit.
-And the answer is, fast, really fast. If you start with 10k USD, and you round trip 5 times on a commodity, thats 100k in volume. On high volume commodities, 1m - 10m per 24hours. We could turn 1-5m dollars per day in volume. That equates to thousands of dollaars per day and millions of dollars per year. Additionaly, we would be paying more in fees, but we would also be paying lower fees in lower fee brackets.
+In perfect theory, 100k in volume would yield around 200$, but we are not bounded to that number, we can choose the most profitable instance to trade and be making 400$ - 1000$ per 100k in trading volume (50k buy 50k sell). The real question, is how often can we turnover 100k in trading volume, to actually make that profit.
+And the answer is, fast, really fast. If you start with 10k USD, and you round trip 5 times on a commodity, thats 100k in volume. On high volume commodities, 1m - 10m per 24hours. We could turn 1-5m dollars per month in volume. That equates to thousands of dollars per day and millions of dollars per year. Additionaly, we would be paying more in fees, but we would also be paying lower fees in lower fee brackets.
 My conlusion is simple, in practical theory, there is a massive opportunity in front of us. With a very conservative estimate, that includes risk and loss. We can easily do 50k volume per day, with just 5000 dollars (5 roundtrips, 70 commodities to choose from), adjusting for loss and dead inventory, our monthly profit could stand at 1000-3000$, and being the optimist I am, we could be making 10-20k per month in the near 1-2 years. 
 
 
