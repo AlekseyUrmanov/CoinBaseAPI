@@ -15,6 +15,7 @@ The programs should be
 - Risk manager
 - Inventory manager
 - Performance manager
+
 So far, I have only written the trading bot and the order placing bot. 
 
 ## Understanding Profitability
