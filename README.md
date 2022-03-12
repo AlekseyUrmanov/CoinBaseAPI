@@ -4,7 +4,7 @@
 - Automating Entrance Opportunities
 
 ## Dev Updates *Aleksey*
-Web Socket bot 2, is an efficient trading function which streams order updates through a websocket. Rather than storing each order ID and performing order updates. Websockets allow us to be informed (by sending us a message) when an order has been filled, within miliseconds we can match the order at the best price. This allows for true high frequency market making. 
+Web Socket bot 1, was the first version of the new operation type, its was clustrsome. bot 2 has functions integrated directly into the class so it was far faster and more efficient, but it can only run one crypto. I have developed a neew program that can place orders on many different currencies at a time at different time intervals. So websocket bot 3 will be able to trade many currency that has had an order execute on it. And you will be able to specify which cryptos to not trade. 
 
 ## Understanding Profitability
  As a foundation, this project will begin in market making stable coins, they have huge volume, low risk, and zero fees. 
