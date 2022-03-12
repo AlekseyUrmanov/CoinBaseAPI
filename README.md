@@ -5,6 +5,17 @@
 
 ## Dev Updates *Aleksey*
 Web Socket bot 1, was the first version of the new operation type, its was clustrsome. bot 2 has functions integrated directly into the class so it was far faster and more efficient, but it can only run one crypto. I have developed a neew program that can place orders on many different currencies at a time at different time intervals. So websocket bot 3 will be able to trade many currency that has had an order execute on it. And you will be able to specify which cryptos to not trade. 
+bot3 almost complete; it can track and trade a variety of currencies. And now im wokring on adding a smarter order matching function that prevents buying and selling at the same price. 
+Iv'e gott the idea that this projct should not be on program, it should be a collection of 6-7 proograms that all work togther, but can work alone too. 
+The programs should be
+- Order placing bot
+- Trading Bot
+- data collector
+- data analyzer
+- Risk manager
+- Inventory manager
+- Performance manager
+So far, I have only written the trading bot and the order placing bot. 
 
 ## Understanding Profitability
  As a foundation, this project will begin in market making stable coins, they have huge volume, low risk, and zero fees. 
