@@ -1,4 +1,4 @@
-# CoinBaseAPI
+# CoinBaseTrading
 - Market Making Algorithms
 - Providing Liquidity
 - Automating Entrance Opportunities
