@@ -1,5 +1,9 @@
 ## Dev Updates 
 
+### Update 1.002 
+Edited Readme file, added websocket bot 3.0 code, will add order placer code soon, added SPD data csv file that contains all the spread per dollar values of all coin-USD pairs. Working on opportunity finding code, that will idnetify potential areas to profit, based on order flow and order book standings. 
+
+
 ### Update 1.001
 Web Socket bot 1, was the first version of the new operation/trading type, its was clustrsome. Bot 2 has functions integrated directly into the class so it was far faster and more efficient, but it can only run one crypto. I have developed a neew program that can place orders on many different currencies at a time at different time intervals. So websocket bot 3 will be able to trade many currency that has had an order execute on it. And you will be able to specify which cryptos to not trade.
 
