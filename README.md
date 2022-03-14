@@ -38,11 +38,13 @@ We than calculate the profit of of a rountrip trade with a 100 USD value, and so
   - At .004, we can turn a profit in **14** instances
   - At .001, we can turn a profit in **70** instances
 
-Assuming all 70 profitable instances, including outliers, the avarage profit for 100k in trading value of some commodity would be ~ 200$
+Assuming all 70 profitable instances, including outliers, the avarage profit for 100k in trading value of some commodity would be ~ 200$, with highs around 1400$, and lows at 10$. 
 
-## Talking Money
-In perfect theory, 100k in volume would yield around 200$, but we are not bounded to that number, we can choose the most profitable instance to trade and be making 400$ - 1000$ per 100k in trading volume (50k buy 50k sell). The real question, is how often can we turnover 100k in trading volume, to actually make that profit.
-And the answer is, fast, really fast. If you start with 10k USD, and you round trip 5 times on a commodity, thats 100k in volume. On high volume commodities, 1m - 10m per 24hours. We could turn 1-5m dollars per month in volume. That equates to thousands of dollars per day and millions of dollars per year. Additionaly, we would be paying more in fees, but we would also be paying lower fees in lower fee brackets.
-My conlusion is simple, in practical theory, there is a massive opportunity in front of us. With a very conservative estimate, that includes risk and loss. We can easily do 50k volume per day, with just 5000 dollars (5 roundtrips, 70 commodities to choose from), adjusting for loss and dead inventory, our monthly profit could stand at 1000-3000$, and being the optimist I am, we could be making 10-20k per month in the near 1-2 years. 
+## Opportunities
+
+If we 'draw' out the fee structure, per one dollar, we can assume we pay a fee equal to the decimal of the percentage fee. We pay this fee twice, on entry and exit of a position. SPD (spread per dollar) is simply the spread of the commodity, divided by the price. To see on how many instances we can become profitable on trades we multiply the fee decimal per dollar by two, and look for commodities that have a greater spread per dollar than that value. Here is a table of how opportunities increase based on the fee bracket, and the spread per dollar. Noteably, the most valuable bracket is the  .001 fee. But that does not exactly indicate valuable opportunites, as some of these are quite literally shit coins with low liquidity. 
+Looking at this situation, intutition tells us that we can trade small volume of many different cryptos rather than large volume on a few, and still get the same results. 
+<img width="380" alt="Screen Shot 2022-03-14 at 2 02 52 PM" src="https://user-images.githubusercontent.com/94999268/158234911-bdd2907f-72d2-4f6d-a17c-f1c3cc35c605.png">
+
 
 
