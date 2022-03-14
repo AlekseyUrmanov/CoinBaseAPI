@@ -44,7 +44,8 @@ Assuming all 70 profitable instances, including outliers, the avarage profit for
 
 If we 'draw' out the fee structure, per one dollar, we can assume we pay a fee equal to the decimal of the percentage fee. We pay this fee twice, on entry and exit of a position. SPD (spread per dollar) is simply the spread of the commodity, divided by the price. To see on how many instances we can become profitable on trades we multiply the fee decimal per dollar by two, and look for commodities that have a greater spread per dollar than that value. Here is a table of how opportunities increase based on the fee bracket, and the spread per dollar. Noteably, the most valuable bracket is the  .001 fee. But that does not exactly indicate valuable opportunites, as some of these are quite literally shit coins with low liquidity. 
 Looking at this situation, intutition tells us that we can trade small volume of many different cryptos rather than large volume on a few, and still get the same results. 
-<img width="380" alt="Screen Shot 2022-03-14 at 2 02 52 PM" src="https://user-images.githubusercontent.com/94999268/158234911-bdd2907f-72d2-4f6d-a17c-f1c3cc35c605.png">
 
+<img width="380" alt="Screen Shot 2022-03-14 at 2 02 52 PM" src="https://user-images.githubusercontent.com/94999268/158234911-bdd2907f-72d2-4f6d-a17c-f1c3cc35c605.png">
+*Fee column is not in %*
 
 
