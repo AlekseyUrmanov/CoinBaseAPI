@@ -1,6 +1,6 @@
 ## Dev Updates 
 
-### Update 1.0003
+### Update 1.003
 After creaating a websocket bot 4, which was integarted with 3 other programs, it was too clustersome to manage. So I revised it much.. and have websocket bot 5.0. It is super efficient, processing 50kilobytes of data per minute. Cool stuff. 
 
 ### Update 1.002 
