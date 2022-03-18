@@ -1,5 +1,8 @@
 ## Dev Updates 
 
+### Update 1.0003
+After creaating a websocket bot 4, which was integarted with 3 other programs, it was too clustersome to manage. So I revised it much.. and have websocket bot 5.0. It is super efficient, processing 50kilobytes of data per minute. Cool stuff. 
+
 ### Update 1.002 
 Edited Readme file, added websocket bot 3.0 code, will add order placer code soon, added SPD data csv file that contains all the spread per dollar values of all coin-USD pairs. Working on opportunity finding code, that will idnetify potential areas to profit, based on order flow and order book standings. 
 
