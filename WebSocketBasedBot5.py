@@ -190,8 +190,6 @@ def ProcessData(msg):
                     price = news['price']
                     ID = news['order_id']
                     
-                    
-                    
                     for r in reduction_objects:
                         
                         if r.PRICE == price:
@@ -201,8 +199,7 @@ def ProcessData(msg):
                             else:
                                
                                 (order_status_dict[r.OID])['rliquidity'] -= size
-                                print('cancel reduced')
-                                print(news)
+                                
                                 pass
                         else:
                             pass
@@ -226,15 +223,7 @@ def ProcessData(msg):
             else:
                 for OID in OIDS:
                     (order_status_dict[OID])['rliquidity'] -= size
-                    print('match reduced')
-                    print(news)
-            
-            
-            # maybe if i add my order ids to the orerbook dictionary at 
-            # their correspoing prices.
-            # i can acces the order ids at that price.
-            # and reduce them in order status dictionary
-            
+                    
             
             
             pass
@@ -370,7 +359,7 @@ class MyWebsocketClient(cbpro.WebsocketClient):
         def on_open(self):
             self.url = "wss://ws-feed.pro.coinbase.com/"
             self.products = ['ADA-USD']
-            self.channels = ['full','level2_50']   #'user','ticker_1000','full','level2_50',
+            self.channels = ['full','level2_50']   #'user','ticker_1000','full','level2_50','level2_batch' is same as 50
             self.auth = True
             self.api_key =  '8811ae1f541f911b68394649c73d17e8'
             self.api_passphrase = 'omgvd80zrdr'
