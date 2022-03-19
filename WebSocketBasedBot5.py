@@ -20,6 +20,8 @@ order_status_dict = {}  # dictionary of orders
 order_book = {} # dictionary of prices to volume
 orders_at_price = {} # dictionary of order sets
 
+reduction_objects = []
+
 tbid = None
 task = None
 v24h = None
@@ -81,6 +83,9 @@ def ProcessData(msg):
                         
                         remaining_liquidity = float(initial_liquidity)
                         
+                        reduction_objects.append(ReductionObject(OID, price))
+                        
+                        print('created reduction object from rec')
                         
                         order_status_dict[OID] = {'size':size,
                                                   'side':side,
@@ -141,6 +146,8 @@ def ProcessData(msg):
                     
                         remaining_liquidity = float(initial_liquidity)
                         
+                        reduction_objects.append(ReductionObject(OID, price))
+                        
                         order_status_dict[OID] = {'size':size,
                                                   'side':side,
                                                   'price':price,
@@ -156,6 +163,18 @@ def ProcessData(msg):
         # data from full channel, used for reductions
         
         elif TYPE == 'received':
+            
+            OTYPE = news['order_type']
+            
+            if OTYPE == 'limit':
+                
+                price = news['price']
+                OID = news['order_id']
+                
+                for r in reduction_objects:
+                    r.add_id([OID,price])
+            else:
+                pass
             pass
             
         elif TYPE == 'open':
@@ -163,9 +182,37 @@ def ProcessData(msg):
             pass
 
         elif TYPE == 'done' :
-           
 
-            pass
+             if 'reason' in news:
+                if news['reason'] == 'canceled':
+                    
+                    size= float(news['remaining_size'])
+                    price = news['price']
+                    ID = news['order_id']
+                    
+                    
+                    
+                    for r in reduction_objects:
+                        
+                        if r.PRICE == price:
+                                
+                            if ID in r.void_ids:
+                                pass
+                            else:
+                               
+                                (order_status_dict[r.OID])['rliquidity'] -= size
+                                print('cancel reduced')
+                                print(news)
+                                pass
+                        else:
+                            pass
+                else:
+                    pass
+             else:
+                
+                pass
+            
+             pass
         
         elif TYPE == 'match':
             
@@ -179,7 +226,8 @@ def ProcessData(msg):
             else:
                 for OID in OIDS:
                     (order_status_dict[OID])['rliquidity'] -= size
-                    
+                    print('match reduced')
+                    print(news)
             
             
             # maybe if i add my order ids to the orerbook dictionary at 
@@ -263,15 +311,66 @@ def matchingEngine(OID):
             auth_client.place_limit_order(coin, side, price, size, post_only=(True))
             
         content = order_status_dict[OID]
-        matchOrder(content)
-        del order_status_dict[OID]
         
+        if content['reason'] == 'canceled':
+            
+            p = float(content['price'])
+            
+            (orders_at_price[p]).remove(OID)
+            
+            del order_status_dict[OID]
+            
+            c = 0
+            for r in reduction_objects:
+                if r.OID == OID:
+                    del reduction_objects[c]
+                    break
+                else:
+                    pass
+                c+=1
+            pass
+        
+        else:
+            
+            del order_status_dict[OID]
+            
+            p = float(content['price'])
+            
+            (orders_at_price[p]).remove(OID)
+                        
+            c = 0
+            for r in reduction_objects:
+                if r.OID == OID:
+                    del reduction_objects[c]
+                    break
+                else:
+                    pass
+                c+=1
+            pass
+
+            matchOrder(content)
+
+class ReductionObject():
+    
+    def __init__(self,OID,PRICE):
+        self.PRICE = PRICE
+        self.OID = OID
+        self.void_ids = []
+        
+    def add_id(self,rPack):
+        rprice = rPack[1]
+        if rprice == self.PRICE:
+            self.void_ids.append(rPack[0])
+        else:
+            pass
+
+    
     
 class MyWebsocketClient(cbpro.WebsocketClient):
         def on_open(self):
             self.url = "wss://ws-feed.pro.coinbase.com/"
-            self.products = ['USDT-USD']
-            self.channels = ['full','level2_50','user']   #'user','ticker_1000','full','level2_50',
+            self.products = ['ADA-USD']
+            self.channels = ['full','level2_50']   #'user','ticker_1000','full','level2_50',
             self.auth = True
             self.api_key =  '8811ae1f541f911b68394649c73d17e8'
             self.api_passphrase = 'omgvd80zrdr'
@@ -284,9 +383,8 @@ class MyWebsocketClient(cbpro.WebsocketClient):
 
     
         def on_message(self, msg):
-            ProcessData(msg)
-            # processes 50 kilobytes per minute
-        
+            #ProcessData(msg)
+            pass
 
         def on_close(self):
             print((datetime.datetime.now() - self.stime).seconds)
