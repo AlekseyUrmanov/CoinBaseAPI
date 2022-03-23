@@ -1,5 +1,8 @@
 ## Dev Updates 
 
+### Update 1.004
+Bot 6 closely resembles bot 5, however, there are some minor tweaks. With the big addition of a position managemnt system. It is very preliminary and dose not perform as intended; it is programmed with only a few conditional statements. But! it can already manage risk: adjust orders through the LOB to capture opportunity and avoid dry liquidation.
+
 ### Update 1.003
 After creaating a websocket bot 4, which was integarted with 3 other programs, it was too clustersome to manage. So I revised it much.. and have websocket bot 5.0. It is super efficient, processing 50kilobytes of data per minute. Cool stuff. 
 
